@@ -17,13 +17,7 @@ import {Button} from 'react-bootstrap'
 const lonvar = 24.932870;
 library.add(fas,faTrain,faTram,faWalking,faBus);
 FontAwesomeIcon.defaultPrefix = "fas";
-const googleMapApiConfig = { 
-  center: '32 wulemotu ajoke street akoka', 
-  size: '500x240', 
-  zoom: '15',
-  key: "AIzaSyD0TUpL03FY2bV2EwnflUu9S6NCfb_iM60", 
-  maptype: 'roadmap'
-}
+
 //eficode 60.169385, 24.925862
 //pasilan asema 60.198669, 24.932870
 const GET_HSL_INFO = gql`
