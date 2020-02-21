@@ -5,7 +5,7 @@ import gql from "graphql-tag";
 import './assets/css/allcss.css'
 import {Container,Row,Col} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import DateHelper from './components/data.js'
+import DateHelper from './components/datehelper.js'
 import TheDate from './components/thedate.js'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconGetter from './components/icongetter.js'
@@ -14,9 +14,8 @@ import { fas, faTrain,faTram,faBus,faWalking} from "@fortawesome/free-solid-svg-
 import {Button} from 'react-bootstrap'
 
 
-const lonvar = 24.932870;
 library.add(fas,faTrain,faTram,faWalking,faBus);
-FontAwesomeIcon.defaultPrefix = "fas";
+
 
 //eficode 60.169385, 24.925862
 //pasilan asema 60.198669, 24.932870
@@ -112,18 +111,18 @@ function App() {
     <Container>
       <Container style={{paddingBottom: "1%", paddingTop: "1%"}} className="font-weight-bold justify-content-md-center">
         <Row>
-          <Col md={2}>
+          <Col md={2} sm={2} xs={12}>
       <TheDate setClock={() => changeClock(time)} setDate={() => changeDate(date)}/>
       </Col>
-      <Col md={3} className="text-right">
+      <Col md={3} sm={3} xs={12} lg={3} className="text-center">
       From {fromto.from}
       </Col>
-      <Col md={2}>
+      <Col md={3} sm={3} xs={12} lg={2} className="text-center justify-content-sm-center">
       <Button variant="primary" size="lg" onClick={() => changeFromto()}>
           Flip locations
         </Button>
       </Col>
-      <Col className="text-left">
+      <Col className="text-center justify-content-sm-center" sm={3} xs={12}>
       To {fromto.to}
       </Col>
       </Row>
@@ -139,34 +138,34 @@ function App() {
          {itinerary.legs.map((leg,index) =>
          <div className="rounded border border-dark bg-primary text-white font-weight-bold">
          <Row>
-         <Col sm={2} md={{ span: 3, offset: 1 }}>
+         <Col sm={2} md={{ span: 3, offset: 1 }} sm={4} xs={4}>
          <DateHelper epochdate={leg.startTime}/>
          </Col>
-         <Col sm={2} md={3} className="text-center">
+         <Col sm={2} md={3} className="text-center" sm={4} xs={4}>
          From {leg.from.name} To {leg.to.name}
          </Col>
-         <Col sm={2} md={{ span: 3, offset: 1}}>
+         <Col sm={2} md={{ span: 3, offset: 1}} sm={4} xs={4}>
          <DateHelper epochdate={leg.endTime}/>
          </Col>
          </Row>
          <Row>
-         <Col sm={2} md={{offset: 1,span: 3 }} >
+         <Col sm={2} md={{offset: 1,span: 3 }} sm={4} xs={4}>
           {leg.from.name}
          </Col>
-         <Col sm={2} md={3} className="text-center">
+         <Col sm={2} md={3} className="text-center" sm={4} xs={4}>
          <IconGetter mode={leg.mode}/>
          </Col>
-         <Col sm={2} md={{ span: 3, offset: 1}}>
+         <Col sm={2} md={{ span: 3, offset: 1}} sm={4} xs={4}>
            {leg.to.name}
            </Col >
          </Row>
          <Row>
-           <Col sm={2} md={{ span: 3, offset: 4}} className="text-center">
+           <Col md={{ span: 3, offset: 4}} sm={12} xs={12} className="text-center">
          {leg.mode} {parseInt(leg.distance) +1} m
          </Col>
          </Row>
          <Row>
-           <Col sm={2} md={{ span: 3, offset: 4}} className="text-center">
+           <Col sm={2} md={{ span: 3, offset: 4}} sm={12} xs={12} className="text-center">
            FOR {diff_minutes_epoch(leg.startTime, leg.endTime)} min
          </Col>
          </Row>
