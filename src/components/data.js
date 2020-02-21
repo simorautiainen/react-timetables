@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import {useQuery} from '@apollo/react-hooks';
-import gql from "graphql-tag";
-import {Container,Row,Col} from 'react-bootstrap'
 
 
 class DateHelper extends Component {
