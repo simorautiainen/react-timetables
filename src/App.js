@@ -35,40 +35,14 @@ query getHslInfo($dateVar: String,$clockVar: String,$fromLat: Float!,$fromLon: F
         startTime
         endTime
         distance
+        route {
+          shortName
+        }
         from {
-          lat
-          lon
           name
-          stop {
-            code
-            name
-            gtfsId
-            stoptimesForPatterns(omitNonPickups: true, timeRange: 1800) {
-              pattern {
-                code
-              }
-              stoptimes {
-                scheduledDeparture
-              }
-            }
-          }
         }
         to {
-          lat
-          lon
           name
-          stop {
-            patterns {
-              code
-            }
-          }
-        }
-        trip {
-          gtfsId
-          pattern {
-            code
-          }
-          tripHeadsign
         }
       }
     }
@@ -78,7 +52,9 @@ query getHslInfo($dateVar: String,$clockVar: String,$fromLat: Float!,$fromLon: F
 
 
 function App() {
-  const vars = {"from": "Pasila Rautatieasema","to": "Eficode Headquarters","fromcord": {lat: 60.198669, lon: 24.932870}, "tocord": {lat: 60.169385,lon: 24.932870}, isdefault: true}
+  //helping variables
+  const startingInfo = {"from": "Pasila Train Station","to": "Eficode Headquarters","fromcord": {lat: 60.198669, lon: 24.932870}, "tocord": {lat: 60.169385,lon: 24.932870}, isdefault: true}
+  const time = null
 
   const initialDate = new Date();
   const initialHours = initialDate.getHours()<10 ? '0'+initialDate.getHours() : initialDate.getHours()
@@ -86,8 +62,8 @@ function App() {
   
   const [clock, setClock] = useState(`${initialHours}:${initialMinutes}:00`);
   const [date, setDate] = useState(`${initialDate.getFullYear()}-${initialDate.getMonth() + 1}-${initialDate.getDate()}`);
-  const [time, setTime] = React.useState()
-  const [fromto, setFromto] = useState(vars)
+
+  const [fromto, setFromto] = useState(startingInfo)
   const changeClock = (time) => {
     setClock(time)
   }
@@ -97,7 +73,7 @@ function App() {
     refetch()
   }
   const changeFromto = () => {
-    fromto.isdefault ? setFromto({"from": "Eficode Headquarters","to": "Pasilan Rautatieasema","fromcord": {lat: 60.169385,lon: 24.932870}, "tocord": {lat: 60.198669, lon: 24.932870}, isdefault: false}) : setFromto({"from": "Pasila Rautatieasema","to": "Eficode Headquarters","fromcord": {lat: 60.198669, lon: 24.932870}, "tocord": {lat: 60.169385,lon: 24.932870}, isdefault: true})
+    fromto.isdefault ? setFromto({"from": "Eficode Headquarters","to": "Pasila Train Station","fromcord": {lat: 60.169385,lon: 24.932870}, "tocord": {lat: 60.198669, lon: 24.932870}, isdefault: false}) : setFromto({"from": "Pasila Train Station","to": "Eficode Headquarters","fromcord": {lat: 60.198669, lon: 24.932870}, "tocord": {lat: 60.169385,lon: 24.932870}, isdefault: true})
     refetch()
   }
   const { loading, error, data, refetch} = useQuery(GET_HSL_INFO, {
@@ -160,10 +136,11 @@ function App() {
            </Col >
          </Row>
          <Row>
-           <Col md={{ span: 3, offset: 4}} sm={12} xs={12} className="text-center">
-         {leg.mode} {parseInt(leg.distance) +1} m
+        <Col md={{ span: 3, offset: 4}} sm={12} xs={12} className="text-center">
+         {leg.mode} {leg.route && leg.route.shortName} {!leg.route && parseInt(leg.distance) +1} {!leg.route && "m"}
          </Col>
          </Row>
+
          <Row>
            <Col sm={2} md={{ span: 3, offset: 4}} sm={12} xs={12} className="text-center">
            FOR {diff_minutes_epoch(leg.startTime, leg.endTime)} min
