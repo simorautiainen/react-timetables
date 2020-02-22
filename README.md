@@ -14,8 +14,9 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 ```
-You'll need node.js installed to be able to run npm commands. You can install **node.js** at [https://nodejs.org/en/](https://nodejs.org/en/) for windows. If using linux, check how to install **node.js** on your distripution.
+node.js
 ```
+You'll need node.js installed to be able to run npm commands. You can install **node.js** at [https://nodejs.org/en/](https://nodejs.org/en/) for windows. If using linux, check how to install **node.js** on your distripution.
 
 ### Installing
 
