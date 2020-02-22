@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-
 import {ApolloClient} from 'apollo-client';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {HttpLink} from 'apollo-link-http';
@@ -16,6 +15,7 @@ const link = new HttpLink({
     uri: 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql'
 });
 
+//Uses apollo
 const client = new ApolloClient({
     cache,
     link

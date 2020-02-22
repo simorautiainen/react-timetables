@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-
+//Returns the date with -
 class DateHelper extends Component {
     
     render(){
