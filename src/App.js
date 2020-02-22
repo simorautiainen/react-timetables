@@ -7,7 +7,6 @@ import {Container,Row,Col} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DateHelper from './components/datehelper.js'
 import TheDate from './components/thedate.js'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconGetter from './components/icongetter.js'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas, faTrain,faTram,faBus,faWalking} from "@fortawesome/free-solid-svg-icons";
@@ -114,24 +113,24 @@ function App() {
          {itinerary.legs.map((leg,index) =>
          <div className="rounded border border-dark bg-primary text-white font-weight-bold">
          <Row>
-         <Col sm={2} md={{ span: 3, offset: 1 }} sm={4} xs={4}>
+         <Col md={{ span: 3, offset: 1 }} sm={4} xs={4}>
          <DateHelper epochdate={leg.startTime}/>
          </Col>
-         <Col sm={2} md={3} className="text-center" sm={4} xs={4}>
+         <Col  md={3} className="text-center" sm={4} xs={4}>
          From {leg.from.name} To {leg.to.name}
          </Col>
-         <Col sm={2} md={{ span: 3, offset: 1}} sm={4} xs={4}>
+         <Col md={{ span: 3, offset: 1}} sm={4} xs={4}>
          <DateHelper epochdate={leg.endTime}/>
          </Col>
          </Row>
          <Row>
-         <Col sm={2} md={{offset: 1,span: 3 }} sm={4} xs={4}>
+         <Col md={{offset: 1,span: 3 }} sm={4} xs={4}>
           {leg.from.name}
          </Col>
-         <Col sm={2} md={3} className="text-center" sm={4} xs={4}>
+         <Col md={3} className="text-center" sm={4} xs={4}>
          <IconGetter mode={leg.mode}/>
          </Col>
-         <Col sm={2} md={{ span: 3, offset: 1}} sm={4} xs={4}>
+         <Col md={{ span: 3, offset: 1}} sm={4} xs={4}>
            {leg.to.name}
            </Col >
          </Row>
@@ -142,7 +141,7 @@ function App() {
          </Row>
 
          <Row>
-           <Col sm={2} md={{ span: 3, offset: 4}} sm={12} xs={12} className="text-center">
+           <Col md={{ span: 3, offset: 4}} sm={12} xs={12} className="text-center">
            FOR {diff_minutes_epoch(leg.startTime, leg.endTime)} min
          </Col>
          </Row>
@@ -157,15 +156,7 @@ function App() {
   );
 }
 
-function SecondsToHours(seconds){
-    const sec_num = parseInt(seconds, 10); // don't forget the second param
-    const hours   = Math.floor(sec_num / 3600);
-    const minutes = Math.floor((sec_num - (hours * 3600)) / 60);
 
-    if (hours   < 10) {hours   = "0"+hours;}
-    if (minutes < 10) {minutes = "0"+minutes;}
-    return (hours+':'+minutes)
-}
 function diff_minutes_epoch(start, end) 
  {
   

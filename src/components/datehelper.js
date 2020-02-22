@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 
 
 class DateHelper extends Component {
-    constructor(props){
-        super(props);
-    }
     
     render(){
         const date = new Date(this.props.epochdate)
