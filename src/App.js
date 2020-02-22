@@ -90,9 +90,9 @@ function App() {
   
   return (
     <Container>
-      <Container style={{paddingBottom: "1%", paddingTop: "1%", fontFamily: "'Oswald', serif"}} className="font-weight-bold justify-content-md-center justify-content-sm-center text-center">
+      <Container style={{paddingBottom: "1%", paddingTop: "1%", fontFamily: "'Oswald', serif",fontSize: "130%"}} className="justify-content-md-center justify-content-sm-center text-center">
         <Row>
-          <Col md={2} sm={12} lg={2} xs={12}>
+          <Col md={2} sm={12} lg={2} xs={12} className="text-left">
       <TheDate setDate={() => changeDate(time,date)}/>
       </Col>
       <Col md={3} sm={12} xs={12} lg={3}>
@@ -117,7 +117,7 @@ function App() {
           Journey takes {parseInt(itinerary.duration/60)+1} minutes</h5></Col>
         </Row>
          {itinerary.legs.map((leg,index) =>
-         <div className="rounded border border-dark bg-primary text-white font-weight-bold">
+         <div className="rounded border border-dark bg-primary text-white">
          <Row>
          <Col md={4} sm={4} xs={4}>
          <DateHelper epochdate={leg.startTime}/>
