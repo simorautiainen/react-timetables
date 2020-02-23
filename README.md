@@ -21,7 +21,7 @@ You'll need node.js installed to be able to run npm commands. You can install **
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running.</br>
-Copy this repository with git clone or download zip. Navigate to the directory and begin installing.</br>
+Copy this repository with git clone or download zip. Navigate to the directory and do the following steps.</br>
 
 Installing all the modules
 
@@ -39,8 +39,13 @@ End with an react Timetables app which should open at [http://localhost:3000](ht
 
 ### Launching with docker
 
-You'll have to have virtualization on and Docker installed to your computer.
+You'll have to have virtualization on and Docker installed to your computer.</br>
 
+Creating a build for react app
+
+```
+npm run build
+```
 Creating the Docker image
 
 ```
